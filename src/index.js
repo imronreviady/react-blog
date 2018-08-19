@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Welcome from './components/Welcome';
 import CreateArticle from './components/CreateArticle';
+import Login from './components/Login';
+import SingleArticle from './components/SingleArticle';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -25,6 +27,8 @@ ReactDOM.render(
 			<Route exact path="/" component={Welcome} />
 			<Route path="/about" component={About} />
 			<Route path="/home" component={Home} />
+			<Route path="/login" component={Login} />
+			<Route path="/article/:slug" component={SingleArticle} />
 			<Route path="/articles/create" component={CreateArticle} />
 
 			<Footer />
