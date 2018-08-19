@@ -7,17 +7,10 @@ import Footer from './components/Footer';
 import Welcome from './components/Welcome';
 import CreateArticle from './components/CreateArticle';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import SingleArticle from './components/SingleArticle';
 
 import registerServiceWorker from './registerServiceWorker';
-
-const Home = () => {
-	return <h1>THIS IS THE HOME PAGE</h1>;
-};
-
-const About = () => {
-	return <h1>THIS IS THE ABOUT PAGE</h1>;
-};
 
 ReactDOM.render(
 	<BrowserRouter>
@@ -25,9 +18,8 @@ ReactDOM.render(
 			<Navbar />
 
 			<Route exact path="/" component={Welcome} />
-			<Route path="/about" component={About} />
-			<Route path="/home" component={Home} />
 			<Route path="/login" component={Login} />
+			<Route path="/signup" component={Signup} />
 			<Route path="/article/:slug" component={SingleArticle} />
 			<Route path="/articles/create" component={CreateArticle} />
 
