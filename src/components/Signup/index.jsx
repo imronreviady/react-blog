@@ -30,9 +30,7 @@ class Signup extends React.Component {
 		try {
 			const user = await this.props.registerUser(this.state);
 
-			localStorage.setItem('user', JSON.stringify(user));
 			this.props.setAuthUser(user);
-			this.props.history.push('/');
 		} catch(errors) {
 			this.setState({ errors });
 		}
