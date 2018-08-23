@@ -9,5 +9,6 @@
     "globals": {
     	"localStorage": true,
     	"document": true,
+    	"FormData": true
     }
 }
