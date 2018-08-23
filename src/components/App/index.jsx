@@ -49,7 +49,18 @@ class App extends React.Component {
 					<Navbar authUser={this.state.authUser} />
 				}
 
-				<Route exact path="/" component={Welcome} />
+				<Route 
+					exact 
+					path="/" 
+					render={
+						props => (
+							<Welcome 
+								{...props}
+								getArticles={this.props.articlesService.getArticles}
+							/>
+						)
+					} 
+				/>
 				<Route 
 					path="/login" 
 					render={
