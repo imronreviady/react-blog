@@ -4,7 +4,7 @@ import Banner from './../../Banner';
 
 import PropTypes from 'prop-types';
 
-const CreateArticle = ({ handleInputChange, categories, handleSubmit }) => {
+const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors }) => {
 	return (
 		<div>
 			{/* Header */}
@@ -19,6 +19,11 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit }) => {
       				<div className="container">
         				<div className="row">
           					<div className="col-12 col-lg-12">
+
+          						<ul className="list-group">
+	          						{errors.map(errors => <li key={errors.message} className="list-group-item text-danger">{errors.message}</li>)}	
+          						</ul>
+
             					<form className="p-30 bg-gray rounded" onSubmit={handleSubmit}>
               						<div className="row">
                 						<div className="form-group col-md-12 my-5">
