@@ -20,7 +20,7 @@ const Navbar = ({authUser}) => {
 						{
 							authUser &&
 							<li className="nav-item">
-								<Link className="nav-link" to="articles/create">Write new article</Link>
+								<Link className="nav-link" to="/articles/create">Write new article</Link>
 							</li>
 						}
 						{

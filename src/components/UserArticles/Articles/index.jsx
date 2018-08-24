@@ -3,7 +3,7 @@ import React from 'react';
 import Banner from '../../Banner';
 import Article from '../../Article';
 
-const Articles = ({ articles, handlePagination, nextUrl, prevUrl }) => {
+const Articles = ({ articles, handlePagination, nextUrl, prevUrl, deleteArticle }) => {
 	return (
 		<div>
 
@@ -23,6 +23,9 @@ const Articles = ({ articles, handlePagination, nextUrl, prevUrl }) => {
 							<Article
 								article={article}
 							/>
+							<div className="text-center">
+								<button onClick={() => deleteArticle(article.id)} className="btn btn-danger">Delete Article</button>
+							</div>
 							<hr />
 						</div>))}
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Articles from './Articles';
 
@@ -26,6 +27,17 @@ class UserArticles extends React.Component {
 		this.props.setArticles(articles.data);
 	}
 
+	deleteArticle = async (id) => {
+		await this.props.deleteArticle(id, this.props.token);
+
+		const articles = this.state.articles.data.filter(article => article.id !== id);
+		this.setState({
+			articles: {
+				data: articles,
+			},
+		});
+	}
+
 	render() {
 		return (
 			<Articles
@@ -33,9 +45,17 @@ class UserArticles extends React.Component {
 				nextUrl={this.state.articles.next_page_url}
 				prevUrl={this.state.articles.prev_page_url}
 				handlePagination={this.handlePagination}
+				deleteArticle={this.deleteArticle}
 			/>
 		);
 	}
 }
+
+UserArticles.propTypes = {
+	getUserArticles: PropTypes.func.isRequired,
+	token: PropTypes.string.isRequired,
+	setArticles: PropTypes.func.isRequired,
+	deleteArticle: PropTypes.func.isRequired,
+};
 
 export default UserArticles;
