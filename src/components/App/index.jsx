@@ -12,6 +12,8 @@ import Login from '../Login';
 import Signup from '../Signup';
 import SingleArticle from '../SingleArticle';
 
+import Auth from '../Auth';
+
 class App extends React.Component {
 	constructor() {
 		super();
@@ -99,18 +101,15 @@ class App extends React.Component {
 						)
 					}
 				/>
-				<Route 
-					path="/articles/create" 
-					render={
-						props => (
-							<CreateArticle 
-								{...props}
-								getArticleCategories={this.props.articlesService.getArticleCategories}
-								createArticle={this.props.articlesService.createArticle}
-								token={this.state.authUser.token}
-							/>
-						)
-					} 
+				<Auth
+					path="/articles/create"
+					component={CreateArticle}
+					props={{
+						getArticleCategories: this.props.articlesService.getArticleCategories,
+						createArticle: this.props.articlesService.createArticle,
+						token: this.state.authUser ? this.state.authUser.token : null,
+					}}
+					isAuthenticated={this.state.authUser !== null}
 				/>
 
 				{
