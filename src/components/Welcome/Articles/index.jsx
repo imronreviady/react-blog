@@ -3,7 +3,7 @@ import React from 'react';
 import Banner from '../../Banner';
 import Article from '../../Article';
 
-const Articles = ({ articles }) => {
+const Articles = ({ articles, handlePagination, nextUrl, prevUrl }) => {
 	return (
 		<div>
 
@@ -27,10 +27,14 @@ const Articles = ({ articles }) => {
 						</div>))}
 
 						<nav className="flexbox mt-50 mb-50">
-							<a className="btn btn-white disabled"><i className="ti-arrow-left fs-9 mr-4" /> Newer</a>
-  							<a className="btn btn-white" href="#">Older
-    							<i className="ti-arrow-right fs-9 ml-4" />
+							<a className={`btn btn-white ${prevUrl ? '' : 'disabled'}`} href="#" onClick={() => handlePagination(prevUrl)}>
+    							<i className="ti-arrow-left fs-9 ml-4" />
+    							Previous Page
   							</a>
+							<a className={`btn btn-white ${nextUrl ? '' : 'disabled'}`} href="#" onClick={() => handlePagination(nextUrl)}>
+								Next Page
+								<i className="ti-arrow-right fs-9 mr-4" />
+							</a>
 						</nav>
 					</div>
 				</div>
