@@ -11,6 +11,7 @@ import CreateArticle from '../CreateArticle';
 import Login from '../Login';
 import Signup from '../Signup';
 import SingleArticle from '../SingleArticle';
+import UserArticles from '../UserArticles';
 
 import Auth from '../Auth';
 import RedirectIfAuth from '../RedirectIfAuth';
@@ -107,6 +108,18 @@ class App extends React.Component {
 						getArticleCategories: this.props.articlesService.getArticleCategories,
 						createArticle: this.props.articlesService.createArticle,
 						token: this.state.authUser ? this.state.authUser.token : null,
+					}}
+					isAuthenticated={this.state.authUser !== null}
+				/>
+
+				<Auth
+					path="/user/articles"
+					component={UserArticles}
+					props={{
+						getUserArticles: this.props.articlesService.getUserArticles,
+						setArticles: this.setArticles,
+						token: this.state.authUser ? this.state.authUser.token : null,
+
 					}}
 					isAuthenticated={this.state.authUser !== null}
 				/>
