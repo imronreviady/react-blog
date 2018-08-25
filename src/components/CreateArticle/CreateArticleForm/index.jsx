@@ -4,13 +4,13 @@ import Banner from './../../Banner';
 
 import PropTypes from 'prop-types';
 
-const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors }) => {
+const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors, editing, article, title, category, content }) => {
 	return (
 		<div>
 			{/* Header */}
   			<Banner 
 				backgroundImage={`url(${process.env.PUBLIC_URL}/assets/img/bg-laptop.jpg)`}
-				title="Write an article"
+				title={editing ? `Editing Article: ${article.title}` : 'Write an article'}
 			/>
   			{/* END Header */}
   			{/* Main container */}
@@ -30,10 +30,10 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors }) 
                   							<input type="file" className="form-control" onChange={handleInputChange} name="image" />
                 						</div>
                 						<div className="form-group col-12 col-md-6">
-                  							<input className="form-control form-control-lg" type="text" name="title" placeholder="Title" onChange={handleInputChange} />
+                  							<input className="form-control form-control-lg" type="text" name="title" placeholder="Title" value={title} onChange={handleInputChange} />
                 						</div>
                 						<div className="form-group col-12 col-md-6">
-                  							<select name="category" onChange={handleInputChange} id className="form-control form-control-lg">
+                  							<select name="category" onChange={handleInputChange} value={category} id className="form-control form-control-lg">
                     							<option value>Select category</option>
                     							{categories.map(category => 
                     								<option key={category.id} value={category.id}>{category.name}</option>
@@ -42,7 +42,7 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors }) 
                 						</div>
               						</div>
               						<div className="form-group">
-                						<textarea className="form-control form-control-lg" rows={4} placeholder="Content" name="content" onChange={handleInputChange} defaultValue={""} />
+                						<textarea className="form-control form-control-lg" rows={4} placeholder="Content" name="content" onChange={handleInputChange} value={content} defaultValue={""} />
               						</div>
               						<div className="text-center">
                 						<button className="btn btn-lg btn-primary" type="submit">Create Article</button>
