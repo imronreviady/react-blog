@@ -1,10 +1,12 @@
 import React from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import Banner from './../../Banner';
 
 import PropTypes from 'prop-types';
 
-const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors, editing, article, title, category, content, updateArticle }) => {
+const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors, editing, article, title, category, content, updateArticle, handleEditorState }) => {
 	return (
 		<div>
 			{/* Header */}
@@ -42,7 +44,10 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit, errors, ed
                 						</div>
               						</div>
               						<div className="form-group">
-                						<textarea className="form-control form-control-lg" rows={4} placeholder="Content" name="content" onChange={handleInputChange} value={content} defaultValue={""} />
+                						<Editor
+                							editorState={content}
+                							onEditorStateChange={handleEditorState}
+                						/>
               						</div>
               						<div className="text-center">
                 						<button className="btn btn-lg btn-primary" type="submit">{editing ? 'Update Article' : 'Create Article'}</button>
