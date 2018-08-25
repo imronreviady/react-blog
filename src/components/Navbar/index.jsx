@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({authUser}) => {
+const Navbar = ({ authUser, removeAuthUser }) => {
 	return (
 		<nav className="topbar topbar-inverse topbar-expand-md topbar-sticky">
 			<div className="container">
@@ -31,7 +31,7 @@ const Navbar = ({authUser}) => {
 								</a>
 								<div className="nav-submenu">
 									<Link className="nav-link" to="/user/articles">My articles</Link>
-									<a className="nav-link" href="#">Logout</a>
+									<Link className="nav-link" to="/" onClick={removeAuthUser}>Logout</Link>
 								</div>
 							</li>
 						}
