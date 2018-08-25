@@ -24,6 +24,12 @@ class CreateArticle extends React.Component {
 
 		if (this.props.match.params.slug) {
 			const article = this.props.articles.find(articleInArray => articleInArray.slug === this.props.match.params.slug);
+
+			if (!article) {
+				this.props.history.push('/user/articles');
+				return;
+			}
+
 			this.setState({ 
 				editing: true, 
 				article, 
@@ -50,6 +56,22 @@ class CreateArticle extends React.Component {
 		}
 	}
 
+	updateArticle = async (event) => {
+		event.preventDefault();
+
+		try {
+			await this.props.updateArticle({
+				title: this.state.title,
+				image: this.state.image,
+				content: this.state.content,
+				category: this.state.category
+			}, this.state.article, this.props.token);
+			this.props.history.push('/');
+		} catch(errors) {
+			this.setState({ errors });
+		}
+	}
+
 	handleInputChange = (event) => {
 		this.setState({
 			[event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
@@ -68,6 +90,7 @@ class CreateArticle extends React.Component {
 				title={this.state.title}
 				category={this.state.category}
 				content={this.state.content}
+				updateArticle={this.updateArticle}
 			/>
 		);
 	}
